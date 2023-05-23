@@ -41,8 +41,10 @@ public abstract class Projectile extends Weapon implements
     public void onCreate() {
         body.flag_wallIgnore = false;
         time_bound = 3;
-        body.setPosX(owner.getCenterX());
-        body.setPosY(owner.getCenterY());
+        if (owner != null) {
+            body.setPosX(owner.getCenterX());
+            body.setPosY(owner.getCenterY());
+        }
         destroyed = false;
     }
 

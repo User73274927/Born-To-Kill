@@ -13,7 +13,6 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useAccelerometer = false;
-		config.useRotationVectorSensor = false;
 		initialize(new BornToKill(), config);
 	}
 }

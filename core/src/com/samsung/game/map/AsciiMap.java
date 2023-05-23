@@ -12,6 +12,9 @@ import com.samsung.game.items.Item;
 import com.samsung.game.items.armor.Armour;
 import com.samsung.game.items.potions.HealthPotion;
 import com.samsung.game.items.potions.ManaPotion;
+import com.samsung.game.items.weapon.BurstWeapon;
+import com.samsung.game.items.weapon.EnergyWeapon;
+import com.samsung.game.items.weapon.FireWeapon;
 import com.samsung.game.utils.Maps;
 import com.samsung.game.utils.TestAssets;
 
@@ -99,6 +102,15 @@ public class AsciiMap implements Map {
                                    break;
                               case Maps.ARMOR_DIAMOND:
                                    setItem(new Armour(Armour.Type.Diamond), x, y);
+                                   break;
+                              case Maps.WEAPON_ENERGY:
+                                   setItem(new EnergyWeapon(null), x, y);
+                                   break;
+                              case Maps.WEAPON_FIRE:
+                                   setItem(new FireWeapon(null), x, y);
+                                   break;
+                              case Maps.WEAPON_BURST:
+                                   setItem(new BurstWeapon(null), x, y);
                                    break;
                          }
                     }

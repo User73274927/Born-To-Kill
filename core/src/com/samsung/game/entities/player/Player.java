@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.samsung.game.BTKGame;
 import com.samsung.game.engine.gdx.ActorWrapper;
 import com.samsung.game.entities.Entity;
@@ -124,7 +125,15 @@ public class Player extends Entity {
     }
 
     public boolean interactsWith(ActorWrapper actor) {
-        return interaction_field.contains(actor.getCenterX(), actor.getCenterY());
+        return interactsWith(actor.getCenterX(), actor.getCenterY());
+    }
+
+    public boolean interactsWith(float x, float y) {
+        return interaction_field.contains(x, y);
+    }
+
+    public Vector2 getDistanceBefore(float x, float y) {
+        return new Vector2(getCenterX() - x, getCenterY() - y);
     }
 
     @Override

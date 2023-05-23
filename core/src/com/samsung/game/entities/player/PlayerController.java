@@ -12,6 +12,7 @@ import com.samsung.game.entities.Npc;
 import com.samsung.game.items.InventoryController;
 import com.samsung.game.items.Item;
 import com.samsung.game.items.potions.Potion;
+import com.samsung.game.map.Tile;
 import com.samsung.game.screens.GameScreen;
 import com.samsung.game.ui.JoyStick;
 import com.samsung.game.ui.UIInventory;
@@ -62,10 +63,16 @@ public class PlayerController extends InputAdapter implements Disposable {
             camera.unproject(touch_pos);
             float x = touch_pos.x;
             float y = touch_pos.y;
-
-            if (GameUtils.findTileByCoords(BTKGame.data.map.getCharMap(), (int)x, (int)y) == 'O') {
+            int[] ff = GameUtils.findIndexesOfTileByCoords(BTKGame.data.map.getCharMap(), (int)x, (int)y);
+            if (GameUtils.findTileByCoords(BTKGame.data.map.getCharMap(), (int)x, (int)y) == 'O' &&
+                    player.getDistanceBefore(Tile.SIZE*ff[1] + Tile.SIZE/2f,
+                            Tile.SIZE*(BTKGame.data.map.getCharMap().length - ff[0]) + Tile.SIZE/2f).len() < 60) {
                 player.levelUp();
-                context.changeLevel("level"+player.getLevel());
+                if (player.getLevel() <= context.levels()) {
+                    context.changeLevel("level" + player.getLevel());
+                } else {
+                    context.interrupt();
+                }
                 return true;
             }
 

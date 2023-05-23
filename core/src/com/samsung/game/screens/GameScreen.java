@@ -43,11 +43,12 @@ public class GameScreen extends ScreenAdapter {
         player_controls = new PlayerControlField(controller);
         port = new PlayerViewPort(this, controller);
         game_over_sound = Gdx.audio.newSound(Gdx.files.internal("game-over-sound.mp3"));
-        game_over_panel = new GameOverPanel(context, port);
+        game_over_panel = new GameOverPanel(this, port);
         game_over_panel.setVisible(false);
 
         scene_dict.put("level1", new Level(this, new AsciiMap(Maps.level1, controller.getPlayer())));
         scene_dict.put("level2", new Level(this, new AsciiMap(Maps.level2, controller.getPlayer())));
+        scene_dict.put("level3", new Level(this, new AsciiMap(Maps.level3, controller.getPlayer())));
     }
 
     boolean flag = true;
@@ -134,6 +135,12 @@ public class GameScreen extends ScreenAdapter {
 
         for (StageWrapper level : scene_dict.values())
             level.dispose();
+    }
+
+    public void interrupt() {
+        context.multiplexer.clear();
+        context.getGameScreen().dispose();
+        context.setScreen(context.getMenuGame());
     }
 
     @Override

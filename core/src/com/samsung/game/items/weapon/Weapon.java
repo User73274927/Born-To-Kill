@@ -43,7 +43,6 @@ public abstract class Weapon extends Item {
     @Override
     public float getX() {
         if (owner == null) {
-            isVisible = false;
             return super.getX();
         }
         return owner.getCenterX();
@@ -52,7 +51,6 @@ public abstract class Weapon extends Item {
     @Override
     public float getY() {
         if (owner == null) {
-            isVisible = false;
             return super.getY();
         }
         return owner.getCenterY();

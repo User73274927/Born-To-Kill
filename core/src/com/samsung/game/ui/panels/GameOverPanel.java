@@ -8,6 +8,7 @@ import com.samsung.game.data.Fonts;
 import com.samsung.game.data.Textures;
 import com.samsung.game.engine.PlayerViewPort;
 import com.samsung.game.engine.gdx.GroupWrapper;
+import com.samsung.game.screens.GameScreen;
 import com.samsung.game.ui.UIButton;
 import com.samsung.game.utils.GameUtils;
 
@@ -18,7 +19,7 @@ public class GameOverPanel extends GroupWrapper {
 
     private UIButton menu_button;
 
-    public GameOverPanel(BornToKill context, PlayerViewPort viewPort) {
+    public GameOverPanel(GameScreen context, PlayerViewPort viewPort) {
         this.viewPort = viewPort;
         game_over_painter = BTKGame.fonts.getFont(Fonts.Type.PxFontTitle);
         game_over_text = "Game Over! :(";
@@ -33,9 +34,7 @@ public class GameOverPanel extends GroupWrapper {
         menu_button.setClickAction(new UIButton.ClickAction() {
             @Override
             public void action() {
-                context.multiplexer.clear();
-                context.getGameScreen().dispose();
-                context.setScreen(context.getMenuGame());
+                context.interrupt();
             }
         });
         addActor(menu_button);
